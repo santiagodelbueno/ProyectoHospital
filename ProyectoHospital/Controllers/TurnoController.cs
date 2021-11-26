@@ -8,24 +8,24 @@ using Microsoft.EntityFrameworkCore;
 using ProyectoHospital.Context;
 using ProyectoHospital.Models;
 
-namespace ProyectoHospital.Controllers
+namespace ProyectoHospital
 {
-    public class AbonadoController : Controller
+    public class TurnoController : Controller
     {
         private readonly HospitalDatabaseContext _context;
 
-        public AbonadoController(HospitalDatabaseContext context)
+        public TurnoController(HospitalDatabaseContext context)
         {
             _context = context;
         }
 
-        // GET: Abonado
+        // GET: Turnoe
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Abonado.ToListAsync());
+            return View(await _context.Turno_1.ToListAsync());
         }
 
-        // GET: Abonado/Details/5
+        // GET: Turnoe/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -33,39 +33,39 @@ namespace ProyectoHospital.Controllers
                 return NotFound();
             }
 
-            var abonado = await _context.Abonado
+            var turno = await _context.Turno_1
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (abonado == null)
+            if (turno == null)
             {
                 return NotFound();
             }
 
-            return View(abonado);
+            return View(turno);
         }
 
-        // GET: Abonado/Create
+        // GET: Turnoe/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Abonado/Create
+        // POST: Turnoe/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id")] Abonado abonado)
+        public async Task<IActionResult> Create([Bind("Id,hora")] Turno turno)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(abonado);
+                _context.Add(turno);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(abonado);
+            return View(turno);
         }
 
-        // GET: Abonado/Edit/5
+        // GET: Turnoe/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -73,22 +73,22 @@ namespace ProyectoHospital.Controllers
                 return NotFound();
             }
 
-            var abonado = await _context.Abonado.FindAsync(id);
-            if (abonado == null)
+            var turno = await _context.Turno_1.FindAsync(id);
+            if (turno == null)
             {
                 return NotFound();
             }
-            return View(abonado);
+            return View(turno);
         }
 
-        // POST: Abonado/Edit/5
+        // POST: Turnoe/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id")] Abonado abonado)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,hora")] Turno turno)
         {
-            if (id != abonado.Id)
+            if (id != turno.Id)
             {
                 return NotFound();
             }
@@ -97,12 +97,12 @@ namespace ProyectoHospital.Controllers
             {
                 try
                 {
-                    _context.Update(abonado);
+                    _context.Update(turno);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!AbonadoExists(abonado.Id))
+                    if (!TurnoExists(turno.Id))
                     {
                         return NotFound();
                     }
@@ -113,10 +113,10 @@ namespace ProyectoHospital.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(abonado);
+            return View(turno);
         }
 
-        // GET: Abonado/Delete/5
+        // GET: Turnoe/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -124,30 +124,30 @@ namespace ProyectoHospital.Controllers
                 return NotFound();
             }
 
-            var abonado = await _context.Abonado
+            var turno = await _context.Turno_1
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (abonado == null)
+            if (turno == null)
             {
                 return NotFound();
             }
 
-            return View(abonado);
+            return View(turno);
         }
 
-        // POST: Abonado/Delete/5
+        // POST: Turnoe/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var abonado = await _context.Abonado.FindAsync(id);
-            _context.Abonado.Remove(abonado);
+            var turno = await _context.Turno_1.FindAsync(id);
+            _context.Turno_1.Remove(turno);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool AbonadoExists(int id)
+        private bool TurnoExists(int id)
         {
-            return _context.Abonado.Any(e => e.Id == id);
+            return _context.Turno_1.Any(e => e.Id == id);
         }
     }
 }

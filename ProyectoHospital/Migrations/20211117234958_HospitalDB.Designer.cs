@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProyectoHospital.Context;
 
 namespace ProyectoHospital.Migrations
 {
     [DbContext(typeof(HospitalDatabaseContext))]
-    partial class HospitalDatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20211117234958_HospitalDB")]
+    partial class HospitalDB
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -85,9 +87,6 @@ namespace ProyectoHospital.Migrations
 
                     b.Property<string>("hora")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("idMedico")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 

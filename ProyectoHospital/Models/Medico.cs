@@ -18,5 +18,7 @@ namespace ProyectoHospital.Models
         public int Edad { get; set; }
         [EnumDataType(typeof(Especialidad))]
         public Especialidad EspecialidadFavorita { get; set; }
+    
+
     }
 }

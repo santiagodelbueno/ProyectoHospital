@@ -5,12 +5,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-
 namespace ProyectoHospital.Models
 {
-    public class Usuario
+    public class Turno
     {
         public int Id { get; set; }
-        public string nombre { get; set; }
+        public string hora { get; set; }
+        public int idMedico { get; set; }
     }
 }
