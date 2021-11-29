@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using ProyectoHospital.Context;
 using ProyectoHospital.Models;
 
-namespace ProyectoHospital.Controllers
+namespace ProyectoHospital
 {
     public class MedicoController : Controller
     {
@@ -22,7 +22,8 @@ namespace ProyectoHospital.Controllers
         // GET: Medico
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Medico.ToListAsync());
+            var hospitalDatabaseContext = _context.Medico.Include(m => m.Usuario);
+            return View(await hospitalDatabaseContext.ToListAsync());
         }
 
         // GET: Medico/Details/5
@@ -34,6 +35,7 @@ namespace ProyectoHospital.Controllers
             }
 
             var medico = await _context.Medico
+                .Include(m => m.Usuario)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (medico == null)
             {
@@ -46,6 +48,7 @@ namespace ProyectoHospital.Controllers
         // GET: Medico/Create
         public IActionResult Create()
         {
+            ViewData["UsuarioId"] = new SelectList(_context.Usuario, "Id", "Nombre");
             return View();
         }
 
@@ -54,7 +57,7 @@ namespace ProyectoHospital.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Nombre,Edad,EspecialidadFavorita")] Medico medico)
+        public async Task<IActionResult> Create([Bind("Id,Nombre,Especialidad,UsuarioId")] Medico medico)
         {
             if (ModelState.IsValid)
             {
@@ -62,6 +65,7 @@ namespace ProyectoHospital.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["UsuarioId"] = new SelectList(_context.Usuario, "Id", "Nombre", medico.UsuarioId);
             return View(medico);
         }
 
@@ -78,6 +82,7 @@ namespace ProyectoHospital.Controllers
             {
                 return NotFound();
             }
+            ViewData["UsuarioId"] = new SelectList(_context.Usuario, "Id", "Nombre", medico.UsuarioId);
             return View(medico);
         }
 
@@ -86,7 +91,7 @@ namespace ProyectoHospital.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Nombre,Edad,EspecialidadFavorita")] Medico medico)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Nombre,Especialidad,UsuarioId")] Medico medico)
         {
             if (id != medico.Id)
             {
@@ -113,6 +118,7 @@ namespace ProyectoHospital.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["UsuarioId"] = new SelectList(_context.Usuario, "Id", "Nombre", medico.UsuarioId);
             return View(medico);
         }
 
@@ -125,6 +131,7 @@ namespace ProyectoHospital.Controllers
             }
 
             var medico = await _context.Medico
+                .Include(m => m.Usuario)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (medico == null)
             {

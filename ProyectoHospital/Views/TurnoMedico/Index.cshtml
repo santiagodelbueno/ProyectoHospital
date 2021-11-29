@@ -1,0 +1,59 @@
+﻿@model IEnumerable<ProyectoHospital.Models.TurnoMedico>
+
+@{
+    ViewData["Title"] = "Agregar Turno a un Médico";
+}
+
+<style>
+
+    h1 {
+        color: black;
+        text-shadow: 1px 1px 1px white;
+    }
+
+    table {
+        color: wheat;
+        background-color: white;
+    }
+
+    td {
+        color: black;
+    }
+
+    th {
+        color: black;
+    }
+</style>
+
+<h1>Agregar Turno a un Médico</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Crear nuevo turno</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Medico)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Turno)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Medico.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Turno.Fecha)
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+

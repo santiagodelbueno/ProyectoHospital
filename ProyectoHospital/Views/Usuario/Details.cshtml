@@ -1,18 +1,52 @@
-﻿@model ProyectoHospital.Models.Usuario
+﻿ @model ProyectoHospital.Models.Usuario
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Detalles del usuario";
 }
 
-<h1>Details</h1>
+<style>
+
+
+    h1, h4 {
+        color: black;
+    }
+
+    dl {
+        background-color: white;
+    }
+
+    a {
+        color: chartreuse;
+    }
+</style>
+
+<h1>Detalles</h1>
 
 <div>
     <h4>Usuario</h4>
     <hr />
     <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Mail)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Mail)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Clave)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Clave)
+        </dd>
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Editar</a> |
+    <a asp-action="Index" class="btn btn-primary">Volver</a>
 </div>

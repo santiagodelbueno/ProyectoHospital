@@ -1,12 +1,24 @@
 ﻿@model ProyectoHospital.Models.Medico
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Editar Médico";
 }
 
-<h1>Edit</h1>
+<style>
 
-<h4>Medico</h4>
+    h1 {
+        color: black;
+        text-shadow: 1px 1px 1px white;
+    }
+
+    form {
+        color: black;
+    }
+</style>
+
+<h1>Editar Médico</h1>
+
+
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -19,26 +31,24 @@
                 <span asp-validation-for="Nombre" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Edad" class="control-label"></label>
-                <input asp-for="Edad" class="form-control" />
-                <span asp-validation-for="Edad" class="text-danger"></span>
+                <label asp-for="Especialidad" class="control-label"></label>
+                <input asp-for="Especialidad" class="form-control" />
+                <span asp-validation-for="Especialidad" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="EspecialidadFavorita" class="control-label"></label>
-                <select asp-for="EspecialidadFavorita" class="form-control" asp-items="Html.GetEnumSelectList<Especialidad>()">
-                    <option selected="selected" value="">Please select</option>
-                </select>
-                <span asp-validation-for="EspecialidadFavorita" class="text-danger"></span>
+                <label asp-for="UsuarioId" class="control-label"></label>
+                <select asp-for="UsuarioId" class="form-control" asp-items="ViewBag.UsuarioId"></select>
+                <span asp-validation-for="UsuarioId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Guardar" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index" class="btn btn-primary">Volver</a>
 </div>
 
 @section Scripts {

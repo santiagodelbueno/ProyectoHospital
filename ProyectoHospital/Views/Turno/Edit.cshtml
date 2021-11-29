@@ -1,12 +1,26 @@
 ﻿@model ProyectoHospital.Models.Turno
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Editar turno";
 }
 
-<h1>Edit</h1>
+<style>
 
-<h4>Turno</h4>
+
+    h1 {
+        color: Black;
+        text-shadow: 1px 1px 1px white;
+    }
+
+    form {
+        color: black;
+        text-shadow: 1px 1px 1px white;
+    }
+</style>
+
+<h1>Editar Turno</h1>
+
+
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -14,19 +28,21 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
             <div class="form-group">
-                <label asp-for="hora" class="control-label"></label>
-                <input asp-for="hora" class="form-control" />
-                <span asp-validation-for="hora" class="text-danger"></span>
+                <label asp-for="Fecha" class="control-label"></label>
+                <input asp-for="Fecha" class="form-control" />
+                <span asp-validation-for="Fecha" class="text-danger"></span>
             </div>
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Guardar" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index" class="btn btn-primary">Volver</a>
 </div>
 
 @section Scripts {

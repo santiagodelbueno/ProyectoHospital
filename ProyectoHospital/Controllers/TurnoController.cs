@@ -19,13 +19,13 @@ namespace ProyectoHospital
             _context = context;
         }
 
-        // GET: Turnoe
+        // GET: Turno
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Turno_1.ToListAsync());
+            return View(await _context.Turno.ToListAsync());
         }
 
-        // GET: Turnoe/Details/5
+        // GET: Turno/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -33,7 +33,7 @@ namespace ProyectoHospital
                 return NotFound();
             }
 
-            var turno = await _context.Turno_1
+            var turno = await _context.Turno
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (turno == null)
             {
@@ -43,18 +43,18 @@ namespace ProyectoHospital
             return View(turno);
         }
 
-        // GET: Turnoe/Create
+        // GET: Turno/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Turnoe/Create
+        // POST: Turno/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,hora")] Turno turno)
+        public async Task<IActionResult> Create([Bind("Id,Fecha")] Turno turno)
         {
             if (ModelState.IsValid)
             {
@@ -65,7 +65,7 @@ namespace ProyectoHospital
             return View(turno);
         }
 
-        // GET: Turnoe/Edit/5
+        // GET: Turno/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -73,7 +73,7 @@ namespace ProyectoHospital
                 return NotFound();
             }
 
-            var turno = await _context.Turno_1.FindAsync(id);
+            var turno = await _context.Turno.FindAsync(id);
             if (turno == null)
             {
                 return NotFound();
@@ -81,12 +81,12 @@ namespace ProyectoHospital
             return View(turno);
         }
 
-        // POST: Turnoe/Edit/5
+        // POST: Turno/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,hora")] Turno turno)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Fecha")] Turno turno)
         {
             if (id != turno.Id)
             {
@@ -116,7 +116,7 @@ namespace ProyectoHospital
             return View(turno);
         }
 
-        // GET: Turnoe/Delete/5
+        // GET: Turno/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -124,7 +124,7 @@ namespace ProyectoHospital
                 return NotFound();
             }
 
-            var turno = await _context.Turno_1
+            var turno = await _context.Turno
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (turno == null)
             {
@@ -134,20 +134,20 @@ namespace ProyectoHospital
             return View(turno);
         }
 
-        // POST: Turnoe/Delete/5
+        // POST: Turno/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var turno = await _context.Turno_1.FindAsync(id);
-            _context.Turno_1.Remove(turno);
+            var turno = await _context.Turno.FindAsync(id);
+            _context.Turno.Remove(turno);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool TurnoExists(int id)
         {
-            return _context.Turno_1.Any(e => e.Id == id);
+            return _context.Turno.Any(e => e.Id == id);
         }
     }
 }

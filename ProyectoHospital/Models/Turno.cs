@@ -9,8 +9,17 @@ namespace ProyectoHospital.Models
 {
     public class Turno
     {
+
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-        public string hora { get; set; }
-        public int idMedico { get; set; }
+
+
+        [Required(ErrorMessage = "El campo Fecha del Turno es requerido")]
+        [Display(Name = "Fecha del Turno")]
+        public DateTime Fecha { get; set; }
+
+        public List<TurnoMedico> TurnoMedico { get; set; }
+
     }
 }

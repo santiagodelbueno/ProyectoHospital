@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProyectoHospital.Context;
 
 namespace ProyectoHospital.Migrations
 {
     [DbContext(typeof(HospitalDatabaseContext))]
-    partial class HospitalDatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20211129021058_Prueba1")]
+    partial class Prueba1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -93,12 +95,12 @@ namespace ProyectoHospital.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("TurnoId")
+                    b.Property<int?>("turnId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("TurnoId");
+                    b.HasIndex("turnId");
 
                     b.ToTable("Usuario");
                 });
@@ -129,9 +131,9 @@ namespace ProyectoHospital.Migrations
 
             modelBuilder.Entity("ProyectoHospital.Models.Usuario", b =>
                 {
-                    b.HasOne("ProyectoHospital.Models.Turno", "Turno")
+                    b.HasOne("ProyectoHospital.Models.Turno", "turn")
                         .WithMany()
-                        .HasForeignKey("TurnoId");
+                        .HasForeignKey("turnId");
                 });
 #pragma warning restore 612, 618
         }
