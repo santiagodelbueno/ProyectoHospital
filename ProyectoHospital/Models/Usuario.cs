@@ -23,11 +23,8 @@ namespace ProyectoHospital.Models
             ErrorMessage = "Dirección de Correo electrónico incorrecta.")]
         public string Mail { get; set; }
 
-        [Required(ErrorMessage = "El campo Clave es requerido")]
-        [StringLength(15, ErrorMessage = "Longitud entre 6 y 15 caracteres.",
-                       MinimumLength = 6)]
-        [DataType(DataType.Password)]
-        public string Clave { get; set; }
+        [Required(ErrorMessage = "El campo NroAfiliado es requerido")]
+        public int NroAfiliado { get; set; }
 
         public Turno Turno { get; set; }
 

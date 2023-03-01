@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ProyectoHospital.Migrations
 {
-    public partial class Prueba1 : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -28,15 +28,15 @@ namespace ProyectoHospital.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Nombre = table.Column<string>(nullable: false),
                     Mail = table.Column<string>(nullable: false),
-                    Clave = table.Column<string>(maxLength: 15, nullable: false),
-                    turnId = table.Column<int>(nullable: true)
+                    NroAfiliado = table.Column<int>(nullable: false),
+                    TurnoId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Usuario", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Usuario_Turno_turnId",
-                        column: x => x.turnId,
+                        name: "FK_Usuario_Turno_TurnoId",
+                        column: x => x.TurnoId,
                         principalTable: "Turno",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -98,9 +98,9 @@ namespace ProyectoHospital.Migrations
                 column: "TurnoId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Usuario_turnId",
+                name: "IX_Usuario_TurnoId",
                 table: "Usuario",
-                column: "turnId");
+                column: "TurnoId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

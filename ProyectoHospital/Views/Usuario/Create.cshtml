@@ -19,7 +19,7 @@
 
 <h4> Ingrese los datos</h4>
 <hr />
-<div class="row">
+<div class="row justify-content-center">
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -34,18 +34,18 @@
                 <span asp-validation-for="Mail" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Clave" class="control-label"></label>
-                <input asp-for="Clave" class="form-control" />
-                <span asp-validation-for="Clave" class="text-danger"></span>
+                <label asp-for="NroAfiliado" class="control-label"></label>
+                <input asp-for="NroAfiliado" class="form-control" />
+                <span asp-validation-for="NroAfiliado" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group text-center">
                 <input type="submit" value="Crear" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
-<div>
+<div class="text-center">
     <a asp-action="Index" class="btn btn-primary">Volver</a>
 </div>
 

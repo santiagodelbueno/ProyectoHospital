@@ -59,6 +59,10 @@ namespace ProyectoHospital
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Nombre,Especialidad,UsuarioId")] Medico medico)
         {
+            if (_context.Usuario.Any(m => m.Nombre == medico.Nombre))
+            {
+                ModelState.AddModelError("Nombre", "Ya existe un medico con ese nombre.");
+            }
             if (ModelState.IsValid)
             {
                 _context.Add(medico);

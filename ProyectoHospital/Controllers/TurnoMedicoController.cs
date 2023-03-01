@@ -22,7 +22,7 @@ namespace ProyectoHospital
         // GET: TurnoMedico
         public async Task<IActionResult> Index()
         {
-            var hospitalDatabaseContext = _context.TurnoMedico.Include(t => t.Medico).Include(t => t.Turno);
+            var hospitalDatabaseContext = _context.TurnoMedico.Include(t => t.Medico).ThenInclude(m => m.Usuario).Include(t => t.Turno);
             return View(await hospitalDatabaseContext.ToListAsync());
         }
 
@@ -63,6 +63,14 @@ namespace ProyectoHospital
         {
             if (ModelState.IsValid)
             {
+                if (_context.TurnoMedico.Any(tm => tm.MedicoId == turnoMedico.MedicoId && tm.TurnoId == turnoMedico.TurnoId))
+                {
+                    ModelState.AddModelError(string.Empty, "Ya existe un turno para este médico en la fecha seleccionada.");
+                    ViewData["MedicoId"] = new SelectList(_context.Medico, "Id", "Nombre", turnoMedico.MedicoId);
+                    ViewData["TurnoId"] = new SelectList(_context.Turno, "Id", "Fecha", turnoMedico.TurnoId);
+                    return View(turnoMedico);
+                }
+
                 _context.Add(turnoMedico);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

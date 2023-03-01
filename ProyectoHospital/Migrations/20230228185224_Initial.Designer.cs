@@ -10,8 +10,8 @@ using ProyectoHospital.Context;
 namespace ProyectoHospital.Migrations
 {
     [DbContext(typeof(HospitalDatabaseContext))]
-    [Migration("20211129021058_Prueba1")]
-    partial class Prueba1
+    [Migration("20230228185224_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -82,11 +82,6 @@ namespace ProyectoHospital.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Clave")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(15)")
-                        .HasMaxLength(15);
-
                     b.Property<string>("Mail")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -95,12 +90,15 @@ namespace ProyectoHospital.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("turnId")
+                    b.Property<int>("NroAfiliado")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("TurnoId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("turnId");
+                    b.HasIndex("TurnoId");
 
                     b.ToTable("Usuario");
                 });
@@ -131,9 +129,9 @@ namespace ProyectoHospital.Migrations
 
             modelBuilder.Entity("ProyectoHospital.Models.Usuario", b =>
                 {
-                    b.HasOne("ProyectoHospital.Models.Turno", "turn")
+                    b.HasOne("ProyectoHospital.Models.Turno", "Turno")
                         .WithMany()
-                        .HasForeignKey("turnId");
+                        .HasForeignKey("TurnoId");
                 });
 #pragma warning restore 612, 618
         }

@@ -9,7 +9,7 @@
 <div>
     <h4>Medico - Turnos</h4>
     <hr />
-    <dl class="row">
+    <dl class="container w-50">
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Medico)
         </dt>
@@ -24,7 +24,7 @@
         </dd>
     </dl>
 </div>
-<div>
+<div class="text-center">
     @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
     <a asp-action="Index">Volver</a>
 </div>

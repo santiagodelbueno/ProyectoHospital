@@ -9,26 +9,13 @@
     h1 {
         color: black;
     }
-
-    table {
-        color: wheat;
-        background-color: white;
-    }
-
-    td {
-        color: black;
-    }
-
-    th {
-        color: black;
-    }
 </style>
-<h1>Usuarios</h1>
+<h1 class="mt-3">Usuarios</h1>
 
-<p>
+<p class="boton-centrado">
     <a asp-action="Create" class="btn btn-primary">Crear nuevo Usuario</a>
 </p>
-<table class="table">
+<table class="styled-table">
     <thead>
         <tr>
             <th>
@@ -38,7 +25,7 @@
                 @Html.DisplayNameFor(model => model.Mail)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Clave)
+                @Html.DisplayNameFor(model => model.NroAfiliado)
             </th>
             <th></th>
         </tr>
@@ -54,7 +41,7 @@
                     @Html.DisplayFor(modelItem => item.Mail)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Clave)
+                    @Html.DisplayFor(modelItem => item.NroAfiliado)
                 </td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |

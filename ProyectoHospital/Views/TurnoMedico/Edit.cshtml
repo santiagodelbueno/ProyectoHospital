@@ -8,20 +8,20 @@
 
 <h4>Medico - Turnos</h4>
 <hr />
-<div class="row">
+<div class="row justify-content-center">
     <div class="col-md-4">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="MedicoId" />
             <input type="hidden" asp-for="TurnoId" />
-            <div class="form-group">
+            <div class="form-group text-center">
                 <input type="submit" value="Guardar" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
-<div>
+<div class="text-center">
     <a asp-action="Index">Volver</a>
 </div>
 

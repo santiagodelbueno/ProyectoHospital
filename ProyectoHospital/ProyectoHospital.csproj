@@ -5,6 +5,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\Imagenes\fotomedico.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\Imagenes\fotomedico.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.21" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.21">

@@ -54,8 +54,16 @@ namespace ProyectoHospital
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Nombre,Mail,Clave")] Usuario usuario)
+        public async Task<IActionResult> Create([Bind("Id,Nombre,Mail,NroAfiliado")] Usuario usuario)
         {
+            if (_context.Usuario.Any(u => u.Mail == usuario.Mail))
+            {
+                ModelState.AddModelError("Mail", "Ya existe un usuario con ese correo electrónico.");
+            }
+            if (_context.Usuario.Any(u => u.NroAfiliado == usuario.NroAfiliado))
+            {
+                ModelState.AddModelError("NroAfiliado", "Ya existe un usuario con ese numero de afiliado.");
+            }
             if (ModelState.IsValid)
             {
                 _context.Add(usuario);
@@ -86,7 +94,7 @@ namespace ProyectoHospital
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Nombre,Mail,Clave")] Usuario usuario)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Nombre,Mail,NroAfiliado")] Usuario usuario)
         {
             if (id != usuario.Id)
             {

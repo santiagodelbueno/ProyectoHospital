@@ -80,11 +80,6 @@ namespace ProyectoHospital.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Clave")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(15)")
-                        .HasMaxLength(15);
-
                     b.Property<string>("Mail")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -92,6 +87,9 @@ namespace ProyectoHospital.Migrations
                     b.Property<string>("Nombre")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("NroAfiliado")
+                        .HasColumnType("int");
 
                     b.Property<int?>("TurnoId")
                         .HasColumnType("int");

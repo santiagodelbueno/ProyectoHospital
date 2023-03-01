@@ -21,7 +21,7 @@
 <div>
 
     <hr />
-    <dl class="row">
+    <dl class="container w-50">
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Nombre)
         </dt>
@@ -42,7 +42,7 @@
         </dd>
     </dl>
 </div>
-<div>
+<div class="text-center">
     <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Editar</a> |
     <a asp-action="Index" class="btn btn-primary">Volver</a>
 </div>
